@@ -1,0 +1,40 @@
+<%- include('../../partials/header.ejs')%>
+
+    <body>
+        <%- include('../../partials/navbar.ejs')%>
+            <div class="container">
+                <hr>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Novo Produto</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/produto/save">
+                            <label>Nome:</label>
+                            <input class="form-control" type="text" name="nome"
+                                placeholder="Defina o nome do produto"><br>
+                            <label>Descrição:</label>
+                            <textarea class="form-control" placeholder="Escreva a descrição do produto!"
+                                name="descricao" id="descricao"></textarea><br>
+                            <label>Preço:</label><br>
+                            <input type=number step=0.01><br>
+                            <label>Quantidade disponível</label><br>
+                            <input type="number" name="vol" min="0"><br>
+                            <label>Codigo de Barras</label><br>
+                            <input type="number" class="form-control"><br>
+                            <label>Status:</label>
+                            <select name="status">
+                                <option value="A">Ativo</option>
+                                <option value="D">Desativado</option>
+                            </select>
+                            <!-- TEM ENDEREÇAMENTO? SE SIM -> CADASTRO DE ENDEREÇAMENTO JA PUUXANDO O IMPUT HIDDEN COM ID DO PRODUTO -->
+                            <div class="card-footer">
+                                <button class="btn btn-success">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+    <%- include('../../partials/footer.ejs')%>
