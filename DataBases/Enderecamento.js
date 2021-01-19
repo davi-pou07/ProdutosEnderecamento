@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize")
 const connection = require("./databases")
 const Produto = require("./Produto.js")
-
+const Tabela = require("./Tabela")
 
 const Enderecamento = connection.define('enderecamentos',{
 	coluna:{
@@ -20,6 +20,7 @@ const Enderecamento = connection.define('enderecamentos',{
 
 //Ligação 1 p 1
 Enderecamento.belongsTo(Produto) //Um enderecamentos pertence a uma Produto
+Enderecamento.belongsTo(Tabela) //Um enderecamentos pertence a uma Produto
 
 Enderecamento.sync({force: false}).then(()=>{
     console.log("enderecamentos ok")//Criar a minha tabela sempre que eu criar a minha aplicação

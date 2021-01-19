@@ -4,20 +4,37 @@
         <%- include('../../partials/navbar.ejs')%>
             <div class="container">
                 <div class="card-header">
-                    <h3>Cadastro do Enderecamento</h3>
+                    <h3>Cadastro do Enderecamento do produto</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="/enderecamento/save">
-                        
+
                         <select name="tabelaId">
-                            <%tabelas.forEach(tabela =>{%>
-                            <option value="<%=tabela.id%>"><%=tabela.nome_rua%></option>
-                            <%})%>
+                            <%tabelas.forEach(tabela=>{%>
+                                <option value="<%=tabela.id%>">
+                                    <%=tabela.nome_rua%>
+                                </option>
                         </select>
+                        <hr>
+                        <div id="div">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <%var x = 1%>
+                                        <%while(tabela.q_coluna>=x){%>
+                                            <th>
+                                                A <%=tabela.q_coluna%>
+                                            </th>
+                                            <%x++%>
+                                            <%}%>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                         <div class="card-footer">
                             <button class="btn btn-success">Cadastrar</button>
                         </div>
-
+                        <%})%>
                     </form>
                 </div>
             </div>
