@@ -22,10 +22,6 @@ const Produto = connection.define('produtos',{
 		type:Sequelize.STRING,
 		allowNull: false
 	},
-	codBar:{
-		type:Sequelize.STRING,
-		allowNull: true
-	},
 	status:{
 		type:Sequelize.STRING,
 		allowNull: false
