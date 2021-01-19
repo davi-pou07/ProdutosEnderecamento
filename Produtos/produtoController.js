@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Produto = require("../DataBases/Produto");
 const slugify = require("slugify");
-const Enderecamento = require("../DataBases/Enderecamento")
+
 
 
 router.get("/admin/produtos/novo",(req, res) => {

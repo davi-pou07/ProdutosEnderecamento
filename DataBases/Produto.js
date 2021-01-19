@@ -27,8 +27,6 @@ const Produto = connection.define('produtos',{
 		allowNull: false
 	}
 })
-
-
 //Procedimento.hasMany(Operacao)//Uma categoria tem muitos artigos
 //Ligação 1 p 1
 //Operacao.belongsTo(Procedimento) //Um artigo pertence a uma categoria

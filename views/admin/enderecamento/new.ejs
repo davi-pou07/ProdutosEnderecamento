@@ -1,10 +1,25 @@
-<!-- Focar no cadastro de rua, coluna, nivel e sequencia para que esse formulario seja selecionavel assim dando para agilizar o cadastro evitando erros do tipo: MESMO ENDEREÇO, VALIDAÇÃO 1A1, DUPLICIDADE.... -->
-<div id="enderecamento">
-    <table>
-        <caption>Rua:<input type="text" placeholder="Digite a Rua do produto"></caption>
-        <th>Coluna:<input type="text" placeholder="Informe a coluna"></th>
-        <tr>Nivel: <input type="text" placeholder="Informe o Nivel do produto">
-        <td>Sequencia: <input type="Em que sequencia o produto está?"></td>
-        </tr>
-    </table>
-</div>
+<%- include('../../partials/header.ejs')%>
+
+    <body>
+        <%- include('../../partials/navbar.ejs')%>
+            <div class="container">
+                <div class="card-header">
+                    <h3>Cadastro do Enderecamento</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/enderecamento/save">
+                        
+                        <select name="tabelaId">
+                            <%tabelas.forEach(tabela =>{%>
+                            <option value="<%=tabela.id%>"><%=tabela.nome_rua%></option>
+                            <%})%>
+                        </select>
+                        <div class="card-footer">
+                            <button class="btn btn-success">Cadastrar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+    </body>
+    <%- include('../../partials/footer.ejs')%>

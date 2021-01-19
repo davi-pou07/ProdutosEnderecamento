@@ -9,6 +9,9 @@ const connection = require('./DataBases/databases')
 const Produto = require("./DataBases/Produto")
 const produtoController = require("./Produtos/produtoController")
 const Enderecamento = require("./DataBases/Enderecamento")
+const enderecamentoController = require("./Enderecamento/enderecamentoController")
+const Tabela = require("./DataBases/Tabela")
+const tabelaController = require("./Tabelas/tabelaController")
 //exportando model de ciração de tabelos no banco
 
 
@@ -33,6 +36,9 @@ app.use(bodyParser.json())
 
 //rotas
 app.use("/",produtoController)
+app.use("/",enderecamentoController)
+app.use("/",tabelaController)
+
 
 //session
 app.use(session({

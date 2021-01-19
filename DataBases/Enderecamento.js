@@ -2,11 +2,8 @@ const Sequelize = require("sequelize")
 const connection = require("./databases")
 const Produto = require("./Produto.js")
 
+
 const Enderecamento = connection.define('enderecamentos',{
-	rua:{
-		type:Sequelize.STRING,
-		allowNull:true
-	},
 	coluna:{
 		type:Sequelize.STRING,
 		allowNull:true
