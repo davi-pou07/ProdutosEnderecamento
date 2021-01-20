@@ -8,7 +8,7 @@ router.get("/admin/enderecamento/novo/:idprod", (req, res) => {
     var idprod = req.params.idprod
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
-            Tabela.findOne({order:{'id':'DESC'}}).then(tabelinha => {
+            Tabela.findOne({order:[['id','DESC']]}).then(tabelinha => {
                 res.render("admin/enderecamento/new", { tabelas: tabelas, produto: produto, tabelinha:tabelinha })
             })
         })

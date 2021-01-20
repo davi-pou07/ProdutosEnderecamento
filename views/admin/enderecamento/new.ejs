@@ -21,24 +21,46 @@
                             <form method="POST" action="/enderecamento/save">
 
                                 <div id="divtable">
-                                    <caption><%=tabelinha.nome_rua%></caption>
+                                    <caption>
+                                        <%=tabelinha.nome_rua%>
+                                    </caption>
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <%var x=0%>
-                                                    
-                                                <%var b= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %>
+                                                <%var x=1%>
 
-                                                        <%while(tabelinha.q_coluna>x){%>
+                                                    <%var
+                                                        b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+                                                        %>
+
+                                                        <%while(tabelinha.q_coluna>=x){%>
                                                             <th>
-                                                                <%=b[x]%><%=tabelinha.q_coluna%>
+                                                                <%=b[tabelinha.q_coluna]%>
+                                                                    <%=x%>
                                                             </th>
                                                             <%x++%>
                                                                 <%}%>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            <%var y=0%>
+                                                
+                                                    <%var
+                                                        b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']%>
+                                                        <%while(tabelinha.q_nivel>y){%>
+                                                            
+                                                            <%var i=0%>
+                                                            <tr>
+                                                                <%while(tabelinha.q_coluna>i){%>
+                                                                    <td>
+                                                                       <input type="text">
+                                                                    </td>
+                                                                    <%i++%>
+                                                                        <%}%>
+                                                                            <%y++%>
+                                                            </tr>
+                                                            <%}%>
+
                                         </tbody>
                                     </table>
 
