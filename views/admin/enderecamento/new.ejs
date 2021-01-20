@@ -2,41 +2,53 @@
 
     <body>
         <%- include('../../partials/navbar.ejs')%>
+
             <div class="container">
                 <div class="card-header">
                     <h3>Cadastro do Enderecamento do produto</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/enderecamento/save">
 
-                        <select name="tabelaId">
-                            <%tabelas.forEach(tabela=>{%>
-                                <option value="<%=tabela.id%>">
-                                    <%=tabela.nome_rua%>
-                                </option>
-                        </select>
-                        <hr>
-                        <div id="div">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <%var x = 1%>
-                                        <%while(tabela.q_coluna>=x){%>
-                                            <th>
-                                                A <%=tabela.q_coluna%>
-                                            </th>
-                                            <%x++%>
-                                            <%}%>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-success">Cadastrar</button>
-                        </div>
+                    <%tabelas.forEach(tabela=>{%>
+                        <a href="/admin/enderecamento/novo/<%=produto.id%>/<%=tabela.id%>" class="btn btn-danger"
+                            onclick="mostraTable()" id="botao1">
+                            <%=tabela.nome_rua%>
+                        </a>
+                        <input type="hidden" name="tabelaId" value="<%=tabela.id%>">
                         <%})%>
-                    </form>
+
+                            <hr>
+                            <form method="POST" action="/enderecamento/save">
+
+                                <div id="divtable">
+                                    <caption><%=tabelinha.nome_rua%></caption>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <%var x=0%>
+                                                    
+                                                <%var b= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %>
+
+                                                        <%while(tabelinha.q_coluna>x){%>
+                                                            <th>
+                                                                <%=b[x]%><%=tabelinha.q_coluna%>
+                                                            </th>
+                                                            <%x++%>
+                                                                <%}%>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <button class="btn btn-success">Cadastrar</button>
+                                </div>
                 </div>
+                </form>
             </div>
     </body>
     <%- include('../../partials/footer.ejs')%>

@@ -1,0 +1,25 @@
+<div id="divtable"></div>
+    <form action="/enderecamento/save" method="POST">
+        <table class="table">
+            <thead>
+                <tr>
+                    <%var x=1%>
+                        <%var
+                            b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']%>
+                            <%while(atabel.q_coluna>=x){%>
+                                <th>
+                                    <%b=[x]%>
+                                        <%=atabel.q_coluna%>
+                                </th>
+                                <%x++%>
+                                    <%}%>
+                </tr>
+            </thead>
+        </table>
+</div>
+<div class="card-footer">
+    <button class="btn btn-success">Cadastrar</button>
+</div>
+</form>
+
+</div>
