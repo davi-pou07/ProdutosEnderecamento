@@ -4,11 +4,11 @@ const Tabela = require("./Tabela")
 
 const Enderecamento = connection.define('enderecamentos',{
 	coluna:{
-		type:Sequelize.STRING,
+		type:Sequelize.INTEGER,
 		allowNull:true
 	},
 	nivel:{
-		type:Sequelize.STRING,
+		type:Sequelize.INTEGER,
 		allowNull:true
 	},
 	sequencia:{

@@ -31,11 +31,12 @@ router.get("/admin/enderecamento/novo/:idProd/:idTab", (req, res) => {
 router.post("/enderecamento/save", (req, res) => {
     var produtoId = req.body.produtoId
     var tabelaId = req.body.tabelaId
+    var n_nivel = req.body.n_nivel
     var n_coluna = req.body.n_coluna
     var n_sequencia = req.body.n_sequencia
     Enderecamento.create({
-        coluna: n_coluna,
-        nivel: '0',
+        coluna: parseInt(n_coluna),
+        nivel:parseInt(n_nivel),
         sequencia: n_sequencia,
         tabelaId: tabelaId,
         produtoId:parseInt(produtoId)

@@ -26,23 +26,23 @@
                                     <!-- Titulo da tabela -->
                                     <caption>
                                         <%=tabelinha.nome_rua%>
-                                        <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
+                                            <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
                                     </caption>
                                     <!-- Tabela Inicio -->
                                     <table class="table">
                                         <!-- Tabela Cabeça -->
                                         <thead>
                                             <tr>
-                                                <%var x=1%>
+                                                <%var x=0%>
 
                                                     <%var
-                                                        b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+                                                        b=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
                                                         %>
+                                                        <th>#</th>
+                                                        <%while(tabelinha.q_coluna>x){%>
 
-                                                        <%while(tabelinha.q_coluna>=x){%>
                                                             <th>
-                                                                <%=b[tabelinha.q_coluna]%>
-                                                                    <%=x%>
+                                                                <%=b[x]%>
                                                             </th>
                                                             <%x++%>
                                                                 <%}%>
@@ -50,23 +50,30 @@
                                         </thead>
                                         <!-- Tabela Corpo -->
                                         <tbody>
-                                            <!-- Declaração de variavel para percorrer toda a tabelaa -->
-                                            <%var y=0%>
-                                                <%while(tabelinha.q_nivel>y){%>
+                                            <!-- Declaração de variavel para percorrer toda a tabela -->
+                                            <%var y=1%>
+                                                <%while(tabelinha.q_nivel>=y){%>
                                                     <!-- Declaração de variavel para preencher os campos da tabela -->
                                                     <%var i=0%>
                                                         <tr>
+
+                                                        <tr>
+                                                            <th>
+                                                                <%=y%>
+                                                            </th>
                                                             <%while(tabelinha.q_coluna>i){%>
                                                                 <td>
-                                                                    <input type="radio" name="n_sequencia" value="<%=tabelinha.q_coluna%>">
-                                                                    
+                                                                    <input type="radio" name="n_sequencia"
+                                                                        value="<%=b[i]%>|<%=y%>">
+                                                                        <input type="hidden" name="n_coluna" value="<%=i%>">
+                                                                        <input type="hidden" name="n_nivel" value="<%=y%>">
                                                                 </td>
                                                                 <%i++%>
 
                                                                     <%}%>
                                                                         <%y++%>
                                                         </tr>
-                                                        
+                                                        </tr>
                                                         <%}%>
 
                                         </tbody>
