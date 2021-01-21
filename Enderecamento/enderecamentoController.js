@@ -27,19 +27,18 @@ router.get("/admin/enderecamento/novo/:idProd/:idTab", (req, res) => {
     })
 })
 
+
 router.post("/enderecamento/save", (req, res) => {
     var produtoId = req.body.produtoId
-    var tabelaId = req.body.produtoId
-    var nome_rua = req.body.nome_rua
-    var q_coluna = req.body.q_coluna
-    var q_nivel = req.body.q_nivel
-    var q_sequencia = req.body.q_sequencia
+    var tabelaId = req.body.tabelaId
+    var n_coluna = req.body.n_coluna
+    var n_sequencia = req.body.n_sequencia
     Enderecamento.create({
-        nome_rua: nome_rua,
-        q_coluna: q_coluna,
-        q_nivel: q_nivel,
-        q_sequencia: q_sequencia,
-        tabelaId: tabelaId
+        coluna: n_coluna,
+        nivel: '0',
+        sequencia: n_sequencia,
+        tabelaId: tabelaId,
+        produtoId:parseInt(produtoId)
     }).then(() => {
         res.redirect("/admin/tabelas")
     })

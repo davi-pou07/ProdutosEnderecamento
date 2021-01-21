@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize")
 const connection = require("./databases")
-const Produto = require("./Produto.js")
 const Tabela = require("./Tabela")
 
 const Enderecamento = connection.define('enderecamentos',{
@@ -15,11 +14,14 @@ const Enderecamento = connection.define('enderecamentos',{
 	sequencia:{
 		type:Sequelize.STRING,
 		allowNull:true
+	},
+	produtoId:{
+		type:Sequelize.INTEGER,
+		allowNull:true
 	}
 })
 
 //Ligação 1 p 1
-Enderecamento.belongsTo(Produto) //Um enderecamentos pertence a uma Produto
 Enderecamento.belongsTo(Tabela) //Um enderecamentos pertence a uma Produto
 
 Enderecamento.sync({force: false}).then(()=>{

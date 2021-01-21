@@ -9,22 +9,28 @@
                 </div>
                 <div class="card-body">
 
-                    <%tabelas.forEach(tabela=>{%>
-                        <a href="/admin/enderecamento/novo/<%=produto.id%>/<%=tabela.id%>" class="btn btn-danger"
-                            onclick="mostraTable()" id="botao1">
-                            <%=tabela.nome_rua%>
-                        </a>
-                        <input type="hidden" name="tabelaId" value="<%=tabela.id%>">
-                        <%})%>
 
-                            <hr>
-                            <form method="POST" action="/enderecamento/save">
+                    <form method="POST" action="/enderecamento/save">
+
+                        <%tabelas.forEach(tabela=>{%>
+                            <a href="/admin/enderecamento/novo/<%=produto.id%>/<%=tabela.id%>" class="btn btn-danger"
+                                onclick="mostraTable()" id="botao1">
+                                <%=tabela.nome_rua%>
+                            </a>
+                            <input type="hidden" name="produtoId" value="<%=produto.id%>">
+                            <%})%>
+
+                                <hr>
 
                                 <div id="divtable">
+                                    <!-- Titulo da tabela -->
                                     <caption>
                                         <%=tabelinha.nome_rua%>
+                                        <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
                                     </caption>
+                                    <!-- Tabela Inicio -->
                                     <table class="table">
+                                        <!-- Tabela Cabeça -->
                                         <thead>
                                             <tr>
                                                 <%var x=1%>
@@ -42,26 +48,29 @@
                                                                 <%}%>
                                             </tr>
                                         </thead>
+                                        <!-- Tabela Corpo -->
                                         <tbody>
+                                            <!-- Declaração de variavel para percorrer toda a tabelaa -->
                                             <%var y=0%>
-                                                
-                                                    <%var
-                                                        b=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']%>
-                                                        <%while(tabelinha.q_nivel>y){%>
-                                                            
-                                                            <%var i=0%>
-                                                            <tr>
-                                                                <%while(tabelinha.q_coluna>i){%>
-                                                                    <td>
-                                                                       <input type="text">
-                                                                    </td>
-                                                                    <%i++%>
-                                                                        <%}%>
-                                                                            <%y++%>
-                                                            </tr>
-                                                            <%}%>
+                                                <%while(tabelinha.q_nivel>y){%>
+                                                    <!-- Declaração de variavel para preencher os campos da tabela -->
+                                                    <%var i=0%>
+                                                        <tr>
+                                                            <%while(tabelinha.q_coluna>i){%>
+                                                                <td>
+                                                                    <input type="radio" name="n_sequencia" value="<%=tabelinha.q_coluna%>">
+                                                                    
+                                                                </td>
+                                                                <%i++%>
+
+                                                                    <%}%>
+                                                                        <%y++%>
+                                                        </tr>
+                                                        
+                                                        <%}%>
 
                                         </tbody>
+                                        <!-- Tabela Fim -->
                                     </table>
 
                                 </div>
