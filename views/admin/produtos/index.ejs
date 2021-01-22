@@ -1,0 +1,41 @@
+<%- include('../../partials/header.ejs')%>
+
+    <body>
+        <%- include('../../partials/navbar.ejs')%>
+            <div class="container">
+                <hr>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Listagem de produtos</h2>
+                    </div>
+                    <%produtos.forEach(produto=>{%>
+                        <ul class="list-group list-group-horizontal">
+                                <button type="button" class="list-group-item list-group-item-action active"
+                                    aria-current="true">
+                                    Id:
+                                <button type="button" class="list-group-item list-group-item-action active"
+                                    aria-current="true">
+                                    Nome:
+                                <button type="button" class="list-group-item list-group-item-action active"
+                                    aria-current="true">
+                                    Preço:
+                                <button type="button" class="list-group-item list-group-item-action active"
+                                    aria-current="true">
+                                    Quantidade:
+                                <button type="button" class="list-group-item list-group-item-action active"
+                                    aria-current="true">
+                                    Status:
+
+                        </ul>
+
+                        <ul class="list-group list-group-horizontal">
+                            <button type="button" class="list-group-item list-group-item-action"><%=produto.id %></button>
+                            <button type="button" class="list-group-item list-group-item-action"><%=produto.nome %></button>
+                            <button type="button" class="list-group-item list-group-item-action"><%=produto.preco %></button>
+                            <button type="button" class="list-group-item list-group-item-action"><%=produto.quantidade %></button>
+                            <button type="button" class="list-group-item list-group-item-action"><%=produto.status %></button>
+                        </ul>
+                        <%})%>
+    </body>
+
+    <%- include('../../partials/footer.ejs')%>

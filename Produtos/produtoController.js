@@ -39,4 +39,12 @@ router.post("/produto/save", (req, res) => {
     }
 });
 
+//Vizualizar produtos
+
+router.get("/admin/produtos",(req,res)=>{
+    Produto.findAll().then(produtos =>{
+        res.render("admin/produtos/index",{produtos,produtos})
+    })
+})
+
 module.exports = router;

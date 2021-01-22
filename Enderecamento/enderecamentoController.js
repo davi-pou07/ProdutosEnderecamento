@@ -35,11 +35,11 @@ router.post("/enderecamento/save", (req, res) => {
     var n_coluna = req.body.n_coluna
     var n_sequencia = req.body.n_sequencia
     Enderecamento.create({
-        coluna: parseInt(n_coluna),
-        nivel:parseInt(n_nivel),
+        coluna: n_coluna,
+        nivel:n_nivel,
         sequencia: n_sequencia,
         tabelaId: tabelaId,
-        produtoId:parseInt(produtoId)
+        produtoId:produtoId
     }).then(() => {
         res.redirect("/admin/tabelas")
     })
