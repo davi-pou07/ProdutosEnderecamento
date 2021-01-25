@@ -8,13 +8,13 @@
                     <div class="card-header">
                         <h2>Listagem de produtos</h2>
                     </div>
-                    <%produtos.forEach(produto=>{%>
+                    
                         <ul class="list-group list-group-horizontal">
                                 <button type="button" class="list-group-item list-group-item-action active"
                                     aria-current="true">
-                                    Id:
+                                    Código:
                                 <button type="button" class="list-group-item list-group-item-action active"
-                                    aria-current="true">
+                                    aria-current="true" >
                                     Nome:
                                 <button type="button" class="list-group-item list-group-item-action active"
                                     aria-current="true">
@@ -27,12 +27,12 @@
                                     Status:
 
                         </ul>
-
+                        <%produtos.forEach(produto=>{%>
                         <ul class="list-group list-group-horizontal">
                             <button type="button" class="list-group-item list-group-item-action"><%=produto.id %></button>
                             <button type="button" class="list-group-item list-group-item-action"><%=produto.nome %></button>
-                            <button type="button" class="list-group-item list-group-item-action"><%=produto.preco %></button>
-                            <button type="button" class="list-group-item list-group-item-action"><%=produto.quantidade %></button>
+                            <button type="button" class="list-group-item list-group-item-action">R$<%=produto.preco %></button>
+                            <button type="button" class="list-group-item list-group-item-action">UN: <%=produto.quantidade %></button>
                             <button type="button" class="list-group-item list-group-item-action"><%=produto.status %></button>
                         </ul>
                         <%})%>

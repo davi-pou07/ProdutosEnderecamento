@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Produto = require("../DataBases/Produto");
 const slugify = require("slugify");
+const Enderecamento = require("../DataBases/Enderecamento");
+const Tabela = require("../DataBases/Tabela");
+
 
 
 
@@ -43,7 +46,18 @@ router.post("/produto/save", (req, res) => {
 
 router.get("/admin/produtos",(req,res)=>{
     Produto.findAll().then(produtos =>{
-        res.render("admin/produtos/index",{produtos,produtos})
+        res.render("admin/produtos/index",{produtos:produtos})
+    })
+})
+
+router.get("/admin/produtos/:id",(req,res)=>{
+    var id = req.params.id
+    Produto.findByPk(id).then(produto =>{
+        Enderecamento.findOne({where:[['id','produtoId']]}).then(endereco =>{
+            Tabela.findOne({where:[['endereco.tabelaId','id']]})
+        }).then(tabelinha =>{
+            res.render("/admin/produtos/produto",{produto:produto,endereco:endereco,tabelinha:tabelinha})
+        })
     })
 })
 

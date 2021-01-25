@@ -17,8 +17,8 @@
                                 onclick="mostraTable()" id="botao1">
                                 <%=tabela.nome_rua%>
                             </a>
-                            <input type="hidden" name="produtoId" value="<%=produto.id%>">
                             <%})%>
+                            <input type="hidden" name="produtoId" value="<%=produto.id%>">
 
                                 <hr>
 
@@ -63,10 +63,8 @@
                                                             </th>
                                                             <%while(tabelinha.q_coluna>i){%>
                                                                 <td>
-                                                                    <input type="radio" name="n_sequencia"
-                                                                        value="<%=b[i]%>|<%=y%>">
-                                                                        <input type="hidden" name="n_coluna" value="<%=i+1%>">
-                                                                        <input type="hidden" name="n_nivel" value="<%=y%>">
+                                                                    <input type="radio" name="endereco"
+                                                                        value="<%=b[i]%> - <%=y%>">
                                                                 </td>
                                                                 <%i++%>
 

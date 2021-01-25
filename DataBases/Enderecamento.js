@@ -11,7 +11,7 @@ const Enderecamento = connection.define('enderecamentos',{
 		type:Sequelize.STRING,
 		allowNull:true
 	},
-	sequencia:{
+	endereco:{
 		type:Sequelize.STRING,
 		allowNull:true
 	},

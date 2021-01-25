@@ -31,13 +31,15 @@ router.get("/admin/enderecamento/novo/:idProd/:idTab", (req, res) => {
 router.post("/enderecamento/save", (req, res) => {
     var produtoId = req.body.produtoId
     var tabelaId = req.body.tabelaId
-    var n_nivel = req.body.n_nivel
-    var n_coluna = req.body.n_coluna
-    var n_sequencia = req.body.n_sequencia
+    var endereco = req.body.endereco
+    var n_nivel = endereco.split(" - ")[1]
+    var n_coluna = endereco.split(" - ")[0]
+    console.log(n_nivel,n_coluna)
     Enderecamento.create({
         coluna: n_coluna,
-        nivel:n_nivel,
-        sequencia: n_sequencia,
+        nivel: n_nivel,
+        // sequencia: n_sequencia,
+        endereco:endereco,
         tabelaId: tabelaId,
         produtoId:produtoId
     }).then(() => {
