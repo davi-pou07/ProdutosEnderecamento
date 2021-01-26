@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const Produto = require("../DataBases/Produto");
 const Tabela = require("../DataBases/tabela");
 
 router.get("/admin/tabela/novo",(req,res)=>{

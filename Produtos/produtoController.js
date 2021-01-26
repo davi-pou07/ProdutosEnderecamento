@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Produto = require("../DataBases/Produto");
-const slugify = require("slugify");
 const Enderecamento = require("../DataBases/Enderecamento");
-const Tabela = require("../DataBases/Tabela");
+const Tabela = require("../DataBases/Tabela")
+const Produto = require("../DataBases/Produto")
+const slugify = require("slugify");
 
 
 
@@ -50,13 +50,28 @@ router.get("/admin/produtos",(req,res)=>{
     })
 })
 
+// router.get("/admin/produtos/:id",(req,res)=>{
+//     var id = req.params.id
+//     Produto.findByPk(id).then(produto =>{
+//         Enderecamento.findOne({where:{produtoId:id}}).then(endereco => {
+//             Tabela.findOne({where:{id:endereco.tabelaId}})
+//         }).then(tabelinha =>{
+//             res.render("/admin/produtos/produto",{produto:produto,endereco:endereco,tabelinha:tabelinha})
+//         })
+//     })
+// })
 router.get("/admin/produtos/:id",(req,res)=>{
     var id = req.params.id
     Produto.findByPk(id).then(produto =>{
-        Enderecamento.findOne({where:[['id','produtoId']]}).then(endereco =>{
-            Tabela.findOne({where:[['endereco.tabelaId','id']]})
-        }).then(tabelinha =>{
-            res.render("/admin/produtos/produto",{produto:produto,endereco:endereco,tabelinha:tabelinha})
+        Enderecamento.findOne({
+            where:{produtoId : id}
+        }).then(endereco =>{
+            console.log(endereco)
+            Tabela.findOne({
+                where:{id : endereco.tabelaId}
+            }).then(tabelinha =>{
+                res.render("admin/produtos/produto",{produto:produto,endereco:endereco,tabelinha:tabelinha})
+            })
         })
     })
 })
