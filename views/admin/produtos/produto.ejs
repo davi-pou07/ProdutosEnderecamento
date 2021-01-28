@@ -19,64 +19,84 @@
                         Preço:<input type="text" placeholder="<%produto.preco%>" disabled>
                         <br>
                         <hr>
-                                    <div class="card-header">
-                                        <h3>Cadastro do Enderecamento do produto</h3>
-                                    </div>
-                                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 id="h3">Enderecamento do produto</h3> <label for="h3"><%=endereco.endereco%></label>
+                        </div>
+                        <div class="card-body">
 
-                                        <!-- Titulo da tabela -->
-                                        <caption>
-                                            <%=tabelinha.nome_rua%>
-                                        </caption>
-                                        <!-- Tabela Inicio -->
-                                        <table class="table">
-                                            <!-- Tabela Cabeça -->
-                                            <thead>
+                            <!-- Titulo da tabela -->
+                            <caption>
+                                <%=tabelinha.nome_rua%>
+                            </caption>
+                            <!-- Tabela Inicio -->
+                            <table class="table">
+                                <!-- Tabela Cabeça -->
+                                <thead>
+                                    <tr>
+                                        <%var x=0%>
+                                            <%var
+                                                b=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                                                %>
+                                                <th>#</th>
+                                                <%while(tabelinha.q_coluna>x){%>
+                                                    <%if(endereco.coluna==b[x]){%>
+                                                    <th class="table-success">
+                                                        <%=b[x]%>
+                                                    </th>
+                                                    <%}else{%>
+                                                        <th>
+                                                            <%=b[x]%>
+                                                        </th>
+                                                        <%}%>
+                                                    <%x++%>
+                                                        <%}%>
+                                    </tr>
+                                </thead>
+                                <!-- Tabela Corpo -->
+                                <tbody>
+                                    <!-- Declaração de variavel para percorrer toda a tabela -->
+                                    <%var y=1%>
+                                        <%while(tabelinha.q_nivel>=y){%>
+                                            <!-- Declaração de variavel para preencher os campos da tabela -->
+                                            <%var i=0%>
+                                            
                                                 <tr>
-                                                    <%var x=0%>
-                                                        <%var
-                                                            b=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-                                                            %>
-                                                            <th>#</th>
-                                                            <%while(tabelinha.q_coluna>x){%>
 
-                                                                <th>
-                                                                    <%=b[x]%>
-                                                                </th>
-                                                                <%x++%>
-                                                                    <%}%>
-                                                </tr>
-                                            </thead>
-                                            <!-- Tabela Corpo -->
-                                            <tbody>
-                                                <!-- Declaração de variavel para percorrer toda a tabela -->
-                                                <%var y=1%>
-                                                    <%while(tabelinha.q_nivel>=y){%>
-                                                        <!-- Declaração de variavel para preencher os campos da tabela -->
-                                                        <%var i=0%>
-                                                            <tr>
-
-                                                            <tr>
-                                                                <th>
-                                                                    <%=y%>
-                                                                </th>
-                                                                <%while(tabelinha.q_coluna>i){%>
-                                                                    <td>
-                                                                        <input type="radio" name="endereco"
-                                                                            value="<%=b[i]%>|<%=y%>" selected>
-                                                                    </td>
+                                                <tr>
+                                                    <%if(endereco.nivel==y){%>
+                                                    <th class="table-success">
+                                                        <%=y%>
+                                                    </th>
+                                                    <%}else{%>
+                                                    <th>
+                                                        <%=y%>
+                                                    </th>
+                                                    <%}%>
+                                                    <%while(tabelinha.q_coluna>i){%>
+                                                        <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
+                                                            <td class="table-success">
+                                                                <input type="radio" name="endereco"
+                                                                    value="<%=produto.nome%>" checked>
+                                                                <%=produto.nome%>
+                                                            </td>
+                                                            <%}else{%>
+                                                                <td>
+                                                                    <input type="radio" name="endereco"
+                                                                        value="<%=b[i]%>|<%=y%>" disabled>
+                                                                </td>
+                                                                <%}%>
                                                                     <%i++%>
 
                                                                         <%}%>
                                                                             <%y++%>
-                                                            </tr>
-                                                            </tr>
-                                                            <%}%>
+                                                </tr>
+                                                </tr>
+                                                <%}%>
 
-                                            </tbody>
-                                            <!-- Tabela Fim -->
-                                        </table>
-                                    </div>
+                                </tbody>
+                                <!-- Tabela Fim -->
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
