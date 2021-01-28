@@ -47,4 +47,15 @@ router.post("/enderecamento/save", (req, res) => {
     })
 })
 
+router.get("/admin/enderecamento/edit/:id",(req,res)=>{
+    id = req.params.id
+    if (id != undefined) {
+        Enderecamento.findByPk(id).then(endereco => {
+            res.render("admin/enderecamento/edit", {endereco: endereco })
+        })
+    } else {
+        req.redirect("/admin/enderecos")
+    }
+})
+
 module.exports = router

@@ -7,20 +7,27 @@
                     <div class="card-header">
                         <h3> Nome:<%=produto.nome%>
                         </h3>
-                        <h6>Status:<%=produto.status%>
-                        </h6>
-                        <h6>Código:<%=produto.id%>
-                        </h6>
+                        <%if(produto.status=='A' && produto.status !=undefined){%>
+                            <h6>Status:Ativo
+                            </h6>
+                            <%}else{%>
+                                <h6>Status:Inativo
+                                </h6>
+                                <%}%>
+                                    <h6>Código:<%=produto.id%>
+                                    </h6>
                     </div>
                     <div class="card-body">
                         <hr>
                         <textarea cols="30" rows="10" disabled><%=produto.descricao%></textarea>
-                        Quantidade:<input type="text" placeholder="<%produto.quantidade%>" disabled>
-                        Preço:<input type="text" placeholder="<%produto.preco%>" disabled>
+                        Quantidade:<input type="text" placeholder="<%=produto.quantidade%>" disabled>
+                        Preço:<input type="text" placeholder="<%=produto.preco%>" disabled>
                         <br>
                         <hr>
                         <div class="card-header">
-                            <h3 id="h3">Enderecamento do produto</h3> <label for="h3"><%=endereco.endereco%></label>
+                            <h3 id="h3">Enderecamento do produto</h3> <label for="h3">
+                                <%=endereco.endereco%>
+                            </label>
                         </div>
                         <div class="card-body">
 
@@ -40,16 +47,16 @@
                                                 <th>#</th>
                                                 <%while(tabelinha.q_coluna>x){%>
                                                     <%if(endereco.coluna==b[x]){%>
-                                                    <th class="table-success">
-                                                        <%=b[x]%>
-                                                    </th>
-                                                    <%}else{%>
                                                         <th>
                                                             <%=b[x]%>
                                                         </th>
-                                                        <%}%>
-                                                    <%x++%>
-                                                        <%}%>
+                                                        <%}else{%>
+                                                            <th>
+                                                                <%=b[x]%>
+                                                            </th>
+                                                            <%}%>
+                                                                <%x++%>
+                                                                    <%}%>
                                     </tr>
                                 </thead>
                                 <!-- Tabela Corpo -->
@@ -59,36 +66,36 @@
                                         <%while(tabelinha.q_nivel>=y){%>
                                             <!-- Declaração de variavel para preencher os campos da tabela -->
                                             <%var i=0%>
-                                            
+
                                                 <tr>
 
                                                 <tr>
                                                     <%if(endereco.nivel==y){%>
-                                                    <th class="table-success">
-                                                        <%=y%>
-                                                    </th>
-                                                    <%}else{%>
-                                                    <th>
-                                                        <%=y%>
-                                                    </th>
-                                                    <%}%>
-                                                    <%while(tabelinha.q_coluna>i){%>
-                                                        <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
-                                                            <td class="table-success">
-                                                                <input type="radio" name="endereco"
-                                                                    value="<%=produto.nome%>" checked>
-                                                                <%=produto.nome%>
-                                                            </td>
-                                                            <%}else{%>
-                                                                <td>
-                                                                    <input type="radio" name="endereco"
-                                                                        value="<%=b[i]%>|<%=y%>" disabled>
-                                                                </td>
-                                                                <%}%>
-                                                                    <%i++%>
+                                                        <th>
+                                                            <%=y%>
+                                                        </th>
+                                                        <%}else{%>
+                                                            <th>
+                                                                <%=y%>
+                                                            </th>
+                                                            <%}%>
+                                                                <%while(tabelinha.q_coluna>i){%>
+                                                                    <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
+                                                                        <td class="table-success">
+                                                                            <input type="radio" name="endereco"
+                                                                                value="<%=produto.nome%>" checked>
+                                                                            <%=produto.nome%>
+                                                                        </td>
+                                                                        <%}else{%>
+                                                                            <td>
+                                                                                <input type="radio" name="endereco"
+                                                                                    value="<%=b[i]%>|<%=y%>" disabled>
+                                                                            </td>
+                                                                            <%}%>
+                                                                                <%i++%>
 
-                                                                        <%}%>
-                                                                            <%y++%>
+                                                                                    <%}%>
+                                                                                        <%y++%>
                                                 </tr>
                                                 </tr>
                                                 <%}%>
@@ -97,6 +104,13 @@
                                 <!-- Tabela Fim -->
                             </table>
                         </div>
+                    </div>
+                    <div class="card-footer mx-auto">
+                        <table class="table">
+                            <tr>
+                                <a href="/admin/produto/edit/<%=produto.id%>" class="btn btn-primary">Editar</a>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
