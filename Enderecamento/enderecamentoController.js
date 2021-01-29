@@ -47,15 +47,58 @@ router.post("/enderecamento/save", (req, res) => {
     })
 })
 
-router.get("/admin/enderecamento/edit/:id",(req,res)=>{
-    id = req.params.id
-    if (id != undefined) {
-        Enderecamento.findByPk(id).then(endereco => {
-            res.render("admin/enderecamento/edit", {endereco: endereco })
+// router.get("/admin/enderecamento/edit/:idprod",(req,res)=>{
+//     id = req.params.id
+//     if (id != undefined) {
+//         Enderecamento.findOne({where:{produtoId:id}},{include:[{model:Tabela}]}).then(endereco => {
+//             res.render("admin/enderecamento/edit", {endereco: endereco })
+//         })
+//     } else {
+//         req.redirect("/admin/enderecos")
+//     }
+// })
+
+router.get("/admin/enderecamento/edit/:idprod", (req, res) => {
+    var idprod = req.params.idprod
+    Tabela.findAll().then((tabelas) => {
+        Produto.findByPk(idprod).then(produto => {
+            Tabela.findOne({order:[['id','DESC']]}).then(tabelinha => {
+                res.render("admin/enderecamento/edit", { tabelas: tabelas, produto: produto, tabelinha:tabelinha })
+            })
         })
-    } else {
-        req.redirect("/admin/enderecos")
-    }
+    })
+
+})
+
+router.get("/admin/enderecamento/edit/:idProd/:idTab", (req, res) => {
+    var idprod = req.params.idProd
+    var idTab = req.params.idTab
+    Tabela.findAll().then((tabelas) => {
+        Produto.findByPk(idprod).then(produto => {
+            Tabela.findByPk(idTab).then(tabelinha => {
+                res.render("admin/enderecamento/edit", { tabelinha: tabelinha, tabelas: tabelas, produto: produto })
+            })
+        })
+    })
+})
+
+router.post("/enderecamento/update", (req, res) => {
+    var produtoId = req.body.produtoId
+    var tabelaId = req.body.tabelaId
+    var endereco = req.body.endereco
+    var n_nivel = endereco.split(" - ")[1]
+    var n_coluna = endereco.split(" - ")[0]
+    console.log(n_nivel,n_coluna)
+    Enderecamento.create({
+        coluna: n_coluna,
+        nivel: n_nivel,
+        // sequencia: n_sequencia,
+        endereco:endereco,
+        tabelaId: tabelaId,
+        produtoId:produtoId
+    }).then(() => {
+        res.redirect("/admin/tabelas")
+    })
 })
 
 module.exports = router
