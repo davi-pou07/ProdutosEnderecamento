@@ -13,7 +13,7 @@
                     <form method="POST" action="/enderecamento/update">
 
                         <%tabelas.forEach(tabela=>{%>
-                            <a href="/admin/enderecamento/novo/<%=produto.id%>/<%=tabela.id%>" class="btn btn-danger"
+                            <a href="/admin/enderecamento/edit/<%=produto.id%>/<%=tabela.id%>" class="btn btn-danger"
                                 onclick="mostraTable()" id="botao1">
                                 <%=tabela.nome_rua%>
                             </a>

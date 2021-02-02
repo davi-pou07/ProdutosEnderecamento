@@ -89,15 +89,15 @@ router.post("/enderecamento/update", (req, res) => {
     var n_nivel = endereco.split(" - ")[1]
     var n_coluna = endereco.split(" - ")[0]
     console.log(n_nivel,n_coluna)
-    Enderecamento.create({
+    Enderecamento.update({
         coluna: n_coluna,
         nivel: n_nivel,
         // sequencia: n_sequencia,
         endereco:endereco,
         tabelaId: tabelaId,
         produtoId:produtoId
-    }).then(() => {
-        res.redirect("/admin/tabelas")
+    },{where:{produtoId : produtoId}}).then(() => {
+        res.redirect("/admin/produtos/"+produtoId)
     })
 })
 

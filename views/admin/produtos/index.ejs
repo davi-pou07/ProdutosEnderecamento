@@ -29,11 +29,11 @@
                         </ul>
                         <%produtos.forEach(produto=>{%>
                         <ul class="list-group list-group-horizontal">
-                            <button type="button" class="list-group-item list-group-item-action"><%=produto.id %></button>
-                            <button type="button" class="list-group-item list-group-item-action"><%=produto.nome %></button>
-                            <button type="button" class="list-group-item list-group-item-action">R$<%=produto.preco %></button>
-                            <button type="button" class="list-group-item list-group-item-action">UN: <%=produto.quantidade %></button>
-                            <button type="button" class="list-group-item list-group-item-action"><%=produto.status %></button>
+                         <button type="button" class="list-group-item list-group-item-action"> <a href="/admin/produtos/<%=produto.id %>"><%=produto.id %></a></button>
+                         <button type="button" class="list-group-item list-group-item-action"><%=produto.nome %></button>
+                         <button type="button" class="list-group-item list-group-item-action">R$<%=produto.preco %></button>
+                         <button type="button" class="list-group-item list-group-item-action">UN: <%=produto.quantidade %></button>
+                         <button type="button" class="list-group-item list-group-item-action"><%=produto.status %></button>
                         </ul>
                         <%})%>
     </body>

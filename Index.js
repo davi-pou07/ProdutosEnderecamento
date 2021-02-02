@@ -12,6 +12,8 @@ const Enderecamento = require("./DataBases/Enderecamento")
 const enderecamentoController = require("./Enderecamento/enderecamentoController")
 const Tabela = require("./DataBases/Tabela")
 const tabelaController = require("./Tabelas/tabelaController")
+const User = require("./DataBases/User")
+const userController = require("./user/userController")
 //exportando model de ciração de tabelos no banco
 
 
@@ -38,6 +40,7 @@ app.use(bodyParser.json())
 app.use("/",produtoController)
 app.use("/",enderecamentoController)
 app.use("/",tabelaController)
+app.use("/",userController)
 
 
 //session
