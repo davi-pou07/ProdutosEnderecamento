@@ -28,6 +28,11 @@ connection
         console.log(msgErro)
     })
 
+//session
+app.use(session({
+    secret: "sdfsdfsdfgdfgfgh",
+    cookie: { maxAge: 1800000000 }
+}))
 //usar o EJS como view engine | renderizador de html
 app.set('view engine', 'ejs')
 //Carregamento de arquivos estaticos no express
@@ -37,19 +42,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //rotas
-app.use("/",produtoController)
-app.use("/",enderecamentoController)
-app.use("/",tabelaController)
-app.use("/",userController)
+app.use("/", produtoController)
+app.use("/", enderecamentoController)
+app.use("/", tabelaController)
+app.use("/", userController)
 
-
-//session
-app.use(session({
-    secret:"sdfsdfsdfgdfgfgh",
-    cookie:{maxAge:1800000000}
-}))
-
-app.get("/",(req,res)=>{res.render("index")})
+app.get("/", (req, res) => { res.render("index") })
 
 app.listen(8080, () => {
     console.log("Servidor rodando!")

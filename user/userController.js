@@ -31,35 +31,37 @@ router.post("/user/novo",(req,res)=>{
 })
 
 router.get("/login",(req,res)=>{
-    res.render("admin/users/login")
+    res.render("admin/user/login")
 })
 
-router.post("/autenticate",(req,res)=>{
-    email=req.body.email
-    password=req.body.password
-    
-    User.findOne({where:{email:email}}).then(user =>{
-        if(user!=undefined){
+router.post("/autenticar",(req,res)=>{
+   var login=req.body.login
+    var senha=req.body.senha
+    console.log(login)
+    User.findOne({where:{login:login}}).then(usu =>{
+        if(usu != undefined){
             //validar senha
-            var correct = bcrypt.compareSync(password,user.password)
+            var correct = bcrypt.compareSync(senha,usu.senha)
             if (correct) {
-                req.session.user = {
-                    id:user.id,
-                    email:user.email
+                req.session.usu = {
+                    id:usu.id,
+                    login:usu.login
                 }
-                // res.json(req.session.user)
-                res.redirect("/admin/articles")
-            } else {
-                res.redirect("/login")
+                // res.json(req.session.usu)
+                res.redirect("/admin/produtos")
+            }else{
+                // console.log("não existe")
+                res.redirect("/")
             }
         }else{
-            res.redirect("/login")
+            // console.log("não encontrado")
+            res.redirect("/")
         }
     })
 })
 
 router.get("/logout",(req,res)=>{
-    req.session.user = undefined
+    req.session.usu = undefined
     res.redirect("/")
 })
 
