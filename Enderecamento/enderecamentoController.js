@@ -5,13 +5,13 @@ const Tabela = require("../DataBases/Tabela")
 const Produto = require("../DataBases/Produto")
 const adminAuth = require("../middlewares/adminAuth")
 
-router.get("/admin/enderecamento/novo/:idprod",adminAuth,(req, res) => {
+router.get("/admin/enderecamento/novo/:idprod", adminAuth, (req, res) => {
     var idprod = req.params.idprod
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
-               
-            Tabela.findOne({order:[['id','DESC']]}).then(tabelinha => {
-                res.render("admin/enderecamento/new", { tabelas: tabelas, produto: produto, tabelinha:tabelinha })
+
+            Tabela.findOne({ order: [['id', 'DESC']] }).then(tabelinha => {
+                res.render("admin/enderecamento/new", { tabelas: tabelas, produto: produto, tabelinha: tabelinha })
             })
         })
     })
@@ -36,36 +36,25 @@ router.post("/enderecamento/save", (req, res) => {
     var endereco = req.body.endereco
     var n_nivel = endereco.split(" - ")[1]
     var n_coluna = endereco.split(" - ")[0]
-    console.log(n_nivel,n_coluna)
+    console.log(n_nivel, n_coluna)
     Enderecamento.create({
         coluna: n_coluna,
         nivel: n_nivel,
         // sequencia: n_sequencia,
-        endereco:endereco,
+        endereco: endereco,
         tabelaId: tabelaId,
-        produtoId:produtoId
+        produtoId: produtoId
     }).then(() => {
         res.redirect("/admin/tabelas")
     })
 })
 
-// router.get("/admin/enderecamento/edit/:idprod",(req,res)=>{
-//     id = req.params.id
-//     if (id != undefined) {
-//         Enderecamento.findOne({where:{produtoId:id}},{include:[{model:Tabela}]}).then(endereco => {
-//             res.render("admin/enderecamento/edit", {endereco: endereco })
-//         })
-//     } else {
-//         req.redirect("/admin/enderecos")
-//     }
-// })
-
 router.get("/admin/enderecamento/edit/:idprod", (req, res) => {
     var idprod = req.params.idprod
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
-            Tabela.findOne({order:[['id','DESC']]}).then(tabelinha => {
-                res.render("admin/enderecamento/edit", { tabelas: tabelas, produto: produto, tabelinha:tabelinha })
+            Tabela.findOne({ order: [['id', 'DESC']] }).then(tabelinha => {
+                res.render("admin/enderecamento/edit", { tabelas: tabelas, produto: produto, tabelinha: tabelinha })
             })
         })
     })
@@ -90,16 +79,34 @@ router.post("/enderecamento/update", (req, res) => {
     var endereco = req.body.endereco
     var n_nivel = endereco.split(" - ")[1]
     var n_coluna = endereco.split(" - ")[0]
-    console.log(n_nivel,n_coluna)
+    console.log(n_nivel, n_coluna)
     Enderecamento.update({
         coluna: n_coluna,
         nivel: n_nivel,
         // sequencia: n_sequencia,
-        endereco:endereco,
+        endereco: endereco,
         tabelaId: tabelaId,
-        produtoId:produtoId
-    },{where:{produtoId : produtoId}}).then(() => {
-        res.redirect("/admin/produtos/"+produtoId)
+        produtoId: produtoId
+    }, { where: { produtoId: produtoId } }).then(() => {
+        res.redirect("/admin/produtos/" + produtoId)
+    })
+})
+
+// <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+router.get("/admin/enderecos/:idtab", (req, res) => {
+    idtab = req.params.idtab
+    Tabela.findAll({ where: { id: idtab } }).then(tabelas => {
+        Enderecamento.findAll({ where: { tabelaId: idtab } }).then(enderecos => {
+            Produto.findAll({ where: { id: enderecos.produtoId } }).then(produtos => {
+                res.render("admin/enderecamento/index",{tabelas,enderecos,produtos})
+            }).catch(err => {
+                res.send("Produto não encontrado")
+            })
+        }).catch(err => {
+            res.send("Endereço não encontrado")
+        })
+    }).catch(err => {
+        res.send("Tabela não encontrada")
     })
 })
 

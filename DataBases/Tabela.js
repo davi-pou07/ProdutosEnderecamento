@@ -13,10 +13,6 @@ const Tabela = connection.define("tabela",{
     q_nivel:{
         type:Sequelize.INTEGER,
         allowNull:false
-    },
-    q_sequencia:{
-        type:Sequelize.INTEGER,
-        allowNull:false
     }
 })
 
