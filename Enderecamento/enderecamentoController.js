@@ -36,7 +36,6 @@ router.post("/enderecamento/save", (req, res) => {
     var endereco = req.body.endereco
     var n_nivel = endereco.split(" - ")[1]
     var n_coluna = endereco.split(" - ")[0]
-    console.log(n_nivel, n_coluna)
     Enderecamento.create({
         coluna: n_coluna,
         nivel: n_nivel,
@@ -94,11 +93,36 @@ router.post("/enderecamento/update", (req, res) => {
 
 // <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 router.get("/admin/enderecos/", (req, res) => {
-    
+    tabelaId =  req.body.tabelaId
     Tabela.findAll().then(tabelas => {
         Enderecamento.findAll().then(enderecos => {
             Produto.findAll().then(produtos => {
-                res.render("admin/enderecamento/index",{tabelas:tabelas,enderecos:enderecos,produtos:produtos})
+                Tabela.findOne().then(tabelinha => {
+                    res.render("admin/enderecamento/index", { tabelas: tabelas, enderecos: enderecos, produtos: produtos, tabelinha: tabelinha })
+                }).catch(err => {
+                    res.send("tabela não encontrado")
+                })
+            }).catch(err => {
+                res.send("Produto não encontrado")
+            })
+        }).catch(err => {
+            res.send("Endereço não encontrado")
+        })
+    }).catch(err => {
+        res.send("Tabela não encontrada")
+    })
+})
+
+router.get("/admin/enderecos/:tabelaId", (req, res) => {
+    var tabelaId = req.params.tabelaId
+    Tabela.findAll().then(tabelas => {
+        Enderecamento.findOne({ where: { tabelaId: tabelaId } }).then(endereco => {
+            Produto.findAll({ where: { id: endereco.produtoId } }).then(produtos => {
+                Tabela.findByPk(tabelaId).then(tabelinha => {
+                    res.render("admin/enderecamento/index", { tabelas: tabelas, endereco: endereco, produtos: produtos, tabelinha: tabelinha })
+                }).catch(err => {
+                    res.send("Produto não encontrado")
+                })
             }).catch(err => {
                 res.send("Produto não encontrado")
             })

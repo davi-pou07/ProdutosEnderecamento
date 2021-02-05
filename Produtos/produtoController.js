@@ -19,10 +19,7 @@ router.post("/produto/save", (req, res) => {
     var preco = req.body.preco;
     var quantidade = req.body.quantidade;
     var status = req.body.status
-
     var resp = req.body.resp
-
-    console.log(nome, descricao, preco, quantidade, status)
     if (nome || preco || quantidade || status != undefined) {
         Produto.create({
             nome: nome,

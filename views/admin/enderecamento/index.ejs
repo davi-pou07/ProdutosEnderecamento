@@ -1,66 +1,86 @@
 <%- include('../../partials/header.ejs')%>
-    <!-- <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
     <body>
         <%- include('../../partials/navbar.ejs')%>
+
             <div class="container">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Tabelas</h2>
-                    </div>
-                    <div class="card-body">
-                        <%tabelas.forEach(tabela=>{%>
-                            <br>
-                            <caption>
-                                <%=tabela.nome_rua%>
-                            </caption>
-                            <table class="table">
-
-                                <thead>
-                                    <tr>
-                                        <%var x=0%>
-                                            <%var
-                                                b=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-                                                %>
-                                                <th>#</th>
-                                                <%while(tabela.q_coluna>x){%>
-                                                    <th>
-                                                        <%=b[x]%>
-                                                    </th>
-                                                    <%x++%>
-                                                        <%}%>
-                                    </tr>
-                                </thead>
-
-
-                                <tbody>
-                                    <%var y=1;%>
-                                            <%while(tabela.q_nivel>=y){%>
-                                                <%var i=0%>
-                                    <tr>
-                                    <tr>
-                                        
-                                                <th>
-                                                    <%=y%>
-                                                </th>
-                                                <%while(tabela.q_coluna>i){%>
-                                                    
-                                                    <td>
-                                                        <input type="radio" name="endereco"
-                                                            value="<%=b[i]%> - <%=y%>">
-                                                    </td>
-                                                    <%i++%>
-
-                                                        <%}%>
-                                    </tr>
-                                    </tr>
-                                    <%y++; }%>
-                                </tbody>
-
-                            </table>
-                            <%})%>
-                    </div>
+                <div class="card-header">
+                    <h3>Listagem do Enderecamento do produto</h3>
                 </div>
+                <div class="card-body">
+
+
+                    <form method="POST" action="/enderecamento/save">
+
+                        <%tabelas.forEach(tabela=>{%>
+                            <a href="/admin/enderecamento/<%=tabela.id%>" class="btn btn-danger"
+                                id="botao1">
+                                <%=tabela.nome_rua%>
+                            </a>
+                            <%})%>
+                                <hr>
+                                <div id="divtable">
+                                    <!-- Titulo da tabela -->
+                                    <caption>
+                                        <%=tabelinha.nome_rua%>
+                                            <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
+                                    </caption>
+                                    <!-- Tabela Inicio -->
+                                    <table class="table">
+                                        <!-- Tabela Cabeça -->
+                                        <thead>
+                                            <tr>
+                                                <%var x=0%>
+
+                                                    <%var
+                                                        b=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                                                        %>
+                                                        <th>#</th>
+                                                        <%while(tabelinha.q_coluna>x){%>
+
+                                                            <th>
+                                                                <%=b[x]%>
+                                                            </th>
+                                                            <%x++%>
+                                                                <%}%>
+                                            </tr>
+                                        </thead>
+                                        <!-- Tabela Corpo -->
+                                        <tbody>
+                                            <!-- Declaração de variavel para percorrer toda a tabela -->
+                                            <%var y=1%>
+                                                <%while(tabelinha.q_nivel>=y){%>
+                                                    <!-- Declaração de variavel para preencher os campos da tabela -->
+                                                    <%var i=0%>
+                                                        <tr>
+
+                                                        <tr>
+                                                            <th>
+                                                                <%=y%>
+                                                            </th>
+                                                            <%while(tabelinha.q_coluna>i){%>
+                                                                <td>
+                                                                    <input type="radio" name="endereco"
+                                                                        value="<%=b[i]%> - <%=y%>">
+                                                                </td>
+                                                                <%i++%>
+
+                                                                    <%}%>
+                                                                        <%y++%>
+                                                        </tr>
+                                                        </tr>
+                                                        <%}%>
+
+                                        </tbody>
+                                        <!-- Tabela Fim -->
+                                    </table>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button class="btn btn-success">Cadastrar</button>
+                                </div>
+                </div>
+                </form>
             </div>
     </body>
     <%- include('../../partials/footer.ejs')%>
