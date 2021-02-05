@@ -93,12 +93,12 @@ router.post("/enderecamento/update", (req, res) => {
 })
 
 // <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-router.get("/admin/enderecos/:idtab", (req, res) => {
-    idtab = req.params.idtab
-    Tabela.findAll({ where: { id: idtab } }).then(tabelas => {
-        Enderecamento.findAll({ where: { tabelaId: idtab } }).then(enderecos => {
-            Produto.findAll({ where: { id: enderecos.produtoId } }).then(produtos => {
-                res.render("admin/enderecamento/index",{tabelas,enderecos,produtos})
+router.get("/admin/enderecos/", (req, res) => {
+    
+    Tabela.findAll().then(tabelas => {
+        Enderecamento.findAll().then(enderecos => {
+            Produto.findAll().then(produtos => {
+                res.render("admin/enderecamento/index",{tabelas:tabelas,enderecos:enderecos,produtos:produtos})
             }).catch(err => {
                 res.send("Produto não encontrado")
             })

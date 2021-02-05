@@ -1,5 +1,6 @@
 <%- include('../../partials/header.ejs')%>
-<!-- <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <!-- <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
     <body>
         <%- include('../../partials/navbar.ejs')%>
             <div class="container">
@@ -9,8 +10,9 @@
                     </div>
                     <div class="card-body">
                         <%tabelas.forEach(tabela=>{%>
+                            <br>
                             <caption>
-                                <%tabela.nome_rua%>
+                                <%=tabela.nome_rua%>
                             </caption>
                             <table class="table">
 
@@ -29,54 +31,36 @@
                                                         <%}%>
                                     </tr>
                                 </thead>
+
+
                                 <tbody>
-                                    <%var y=1%>
-                                    <%while(tabela.q_nivel>=y){%>
-                                        <!-- Declaração de variavel para preencher os campos da tabela -->
-                                        <%var i=0%>
+                                    <%var y=1;%>
+                                            <%while(tabela.q_nivel>=y){%>
+                                                <%var i=0%>
+                                    <tr>
+                                    <tr>
+                                        
+                                                <th>
+                                                    <%=y%>
+                                                </th>
+                                                <%while(tabela.q_coluna>i){%>
+                                                    
+                                                    <td>
+                                                        <input type="radio" name="endereco"
+                                                            value="<%=b[i]%> - <%=y%>">
+                                                    </td>
+                                                    <%i++%>
 
-                                            <tr>
-
-                                            <tr>
-                                                <%if(endereco.nivel==y){%>
-                                                    <th>
-                                                        <%=y%>
-                                                    </th>
-                                                    <%}else{%>
-                                                        <th>
-                                                            <%=y%>
-                                                        </th>
                                                         <%}%>
-                                                            <%while(tabelinha.q_coluna>i){%>
-                                                                <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
-                                                                    <td class="table-success">
-                                                                        <input type="radio" name="endereco"
-                                                                            value="<%=produto.nome%>" checked>
-                                                                        <%=produto.nome%>
-                                                                    </td>
-                                                                    <%}else{%>
-                                                                        <td>
-                                                                            <input type="radio" name="endereco"
-                                                                                value="<%=b[i]%>|<%=y%>" disabled>
-                                                                        </td>
-                                                                        <%}%>
-                                                                            <%i++%>
-
-                                                                                <%}%>
-                                                                                    <%y++%>
-                                            </tr>
-                                            </tr>
-                                            <%}%>
-
+                                    </tr>
+                                    </tr>
+                                    <%y++; }%>
                                 </tbody>
 
                             </table>
+                            <%})%>
                     </div>
-                    <%})%>
                 </div>
             </div>
-
-            </div>
-
     </body>
     <%- include('../../partials/footer.ejs')%>
