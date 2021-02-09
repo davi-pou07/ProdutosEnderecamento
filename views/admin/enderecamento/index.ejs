@@ -13,7 +13,7 @@
                     <form method="POST" action="/enderecamento/save">
 
                         <%tabelas.forEach(tabela=>{%>
-                            <a href="/admin/enderecamento/<%=tabela.id%>" class="btn btn-danger"
+                            <a href="/admin/enderecos/<%=tabela.id%>" class="btn btn-danger"
                                 id="botao1">
                                 <%=tabela.nome_rua%>
                             </a>
@@ -58,13 +58,25 @@
                                                             <th>
                                                                 <%=y%>
                                                             </th>
+                                                            
                                                             <%while(tabelinha.q_coluna>i){%>
-                                                                <td>
-                                                                    <input type="radio" name="endereco"
-                                                                        value="<%=b[i]%> - <%=y%>">
-                                                                </td>
+                                                                <%enderecos.forEach(endereco=>{%>
+                                                                    <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
+                                                                        <%produtos.forEach(produto=>{%>
+                                                                            <%if(produto.id == endereco.produtoId){%>
+                                                                    <td class="table-success">
+                                                                        <input type="button" name="endereco" value="<%=produto.nome%>">
+                                                                    </td>
+                                                                            <%}%>
+                                                                        <%})%>
+                                                                    <%}else{%>
+                                                                        <td>
+                                                                            <input type="radio" name="endereco"
+                                                                                value="<%=b[i]%>|<%=y%>" disabled>
+                                                                        </td>
+                                                                    <%}%>
+                                                                <%})%>
                                                                 <%i++%>
-
                                                                     <%}%>
                                                                         <%y++%>
                                                         </tr>

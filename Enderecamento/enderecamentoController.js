@@ -92,12 +92,12 @@ router.post("/enderecamento/update", (req, res) => {
 })
 
 // <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-router.get("/admin/enderecos/", (req, res) => {
-    tabelaId =  req.body.tabelaId
+router.get("/admin/enderecos/:tabelaId", (req, res) => {
+    var tabelaId = req.params.tabelaId
     Tabela.findAll().then(tabelas => {
-        Enderecamento.findAll().then(enderecos => {
+        Enderecamento.findAll({where:{tabelaId:tabelaId}}).then(enderecos => {
             Produto.findAll().then(produtos => {
-                Tabela.findOne().then(tabelinha => {
+                Tabela.findByPk(tabelaId).then(tabelinha => {
                     res.render("admin/enderecamento/index", { tabelas: tabelas, enderecos: enderecos, produtos: produtos, tabelinha: tabelinha })
                 }).catch(err => {
                     res.send("tabela não encontrado")
@@ -113,25 +113,26 @@ router.get("/admin/enderecos/", (req, res) => {
     })
 })
 
-router.get("/admin/enderecos/:tabelaId", (req, res) => {
-    var tabelaId = req.params.tabelaId
-    Tabela.findAll().then(tabelas => {
-        Enderecamento.findOne({ where: { tabelaId: tabelaId } }).then(endereco => {
-            Produto.findAll({ where: { id: endereco.produtoId } }).then(produtos => {
-                Tabela.findByPk(tabelaId).then(tabelinha => {
-                    res.render("admin/enderecamento/index", { tabelas: tabelas, endereco: endereco, produtos: produtos, tabelinha: tabelinha })
-                }).catch(err => {
-                    res.send("Produto não encontrado")
-                })
-            }).catch(err => {
-                res.send("Produto não encontrado")
-            })
-        }).catch(err => {
-            res.send("Endereço não encontrado")
-        })
-    }).catch(err => {
-        res.send("Tabela não encontrada")
-    })
-})
+// router.get("/admin/enderecos/:tabelaId", (req, res) => {
+//     var tabelaId = req.params.tabelaId
+//     Tabela.findAll().then(tabelas => {
+//         Enderecamento.findAll().then(endereco => {
+//             var prodId = endereco.produtoId
+//             console.log("-=--------------")
+//             console.log(prodId)
+//             Produto.findAll({ where: { id: prodId } }).then(produtos => {
+//                 Tabela.findByPk(tabelaId).then(tabelinha => {
+//                     res.render("admin/enderecamento/index", { tabelas: tabelas, endereco: endereco, produtos: produtos, tabelinha: tabelinha })
+//                 }).catch(err => {
+//                     res.send("Produto não encontrado")
+//                 })
+//             }).catch(err => {
+//                 res.send("Produto não encontrado")
+//             })
+//         })
+//     }).catch(err => {
+//         res.send("Tabela não encontrada")
+//     })
+// })
 
 module.exports = router
