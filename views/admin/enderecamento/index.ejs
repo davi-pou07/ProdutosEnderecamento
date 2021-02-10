@@ -10,23 +10,21 @@
                 <div class="card-body">
 
 
-                    <form method="POST" action="/enderecamento/save">
 
                         <%tabelas.forEach(tabela=>{%>
-                            <a href="/admin/enderecos/<%=tabela.id%>" class="btn btn-danger"
+                            <a href="/admin/enderecos/<%=tabela.id%>" class="btn btn-success"
                                 id="botao1">
                                 <%=tabela.nome_rua%>
                             </a>
                             <%})%>
                                 <hr>
-                                <div id="divtable">
                                     <!-- Titulo da tabela -->
                                     <caption>
                                         <%=tabelinha.nome_rua%>
                                             <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
                                     </caption>
                                     <!-- Tabela Inicio -->
-                                    <table class="table">
+                                    <table class="table table-hover">
                                         <!-- Tabela Cabeça -->
                                         <thead>
                                             <tr>
@@ -60,39 +58,34 @@
                                                             </th>
                                                             
                                                             <%while(tabelinha.q_coluna>i){%>
-                                                                <%enderecos.forEach(endereco=>{%>
-                                                                    <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
-                                                                        <%produtos.forEach(produto=>{%>
-                                                                            <%if(produto.id == endereco.produtoId){%>
-                                                                    <td class="table-success">
-                                                                        <input type="button" name="endereco" value="<%=produto.nome%>">
-                                                                    </td>
+
+                                                                    <td>
+                                                                        <%enderecos.forEach(endereco=>{%>
+                                                                            <%var teste = 0%>
+                                                                            <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
+                                                                                <%teste = 1%>
+                                                                                <%produtos.forEach(produto=>{%>
+                                                                                    <%if(produto.id == endereco.produtoId){%>
+                                                                        <input type="button" class="btn btn-info" name="endereco" value="<%=produto.nome%>">
+                                                                                    <%}%>
+                                                                                <%})%>
+                                                                            <%}else if(teste != 0){%>
+                                                                        <input type="button" name="endereco" value="<vazio>">
                                                                             <%}%>
                                                                         <%})%>
-                                                                    <%}else{%>
-                                                                        <td>
-                                                                            <input type="radio" name="endereco"
-                                                                                value="<%=b[i]%>|<%=y%>" disabled>
-                                                                        </td>
-                                                                    <%}%>
-                                                                <%})%>
+                                                                    </td>
+
                                                                 <%i++%>
-                                                                    <%}%>
-                                                                        <%y++%>
+                                                            <%}%>
+                                                                <%y++%>
                                                         </tr>
                                                         </tr>
-                                                        <%}%>
+                                                <%}%>
 
                                         </tbody>
                                         <!-- Tabela Fim -->
                                     </table>
-                                </div>
-
-                                <div class="card-footer">
-                                    <button class="btn btn-success">Cadastrar</button>
-                                </div>
                 </div>
-                </form>
             </div>
     </body>
     <%- include('../../partials/footer.ejs')%>
