@@ -24,7 +24,7 @@ router.get("/admin/enderecamento/novo/:idProd/:idTab", (req, res) => {
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
             Tabela.findByPk(idTab).then(tabelinha => {
-                Enderecamento.findAll({ where: { tabelaId: idTab} }).then(enderecos => {
+                Enderecamento.findAll({ where: { tabelaId: idTab}}).then(enderecos => {
                     res.render("admin/enderecamento/new", { tabelinha: tabelinha, tabelas: tabelas, produto: produto, enderecos:enderecos })
                 })
             })
@@ -91,28 +91,6 @@ router.post("/enderecamento/update", (req, res) => {
         produtoId: produtoId
     }, { where: { produtoId: produtoId } }).then(() => {
         res.redirect("/admin/produtos/" + produtoId)
-    })
-})
-
-// <<<<<<<<<<<<<<<<<<<<<< COM ERROS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-router.get("/admin/enderecos/:tabelaId", (req, res) => {
-    var tabelaId = req.params.tabelaId
-    Tabela.findAll().then(tabelas => {
-        Enderecamento.findAll({ where: { tabelaId: tabelaId } }).then(enderecos => {
-            Produto.findAll().then(produtos => {
-                Tabela.findByPk(tabelaId).then(tabelinha => {
-                    res.render("admin/enderecamento/index", { tabelas: tabelas, enderecos: enderecos, produtos: produtos, tabelinha: tabelinha })
-                }).catch(err => {
-                    res.send("tabela não encontrado")
-                })
-            }).catch(err => {
-                res.send("Produto não encontrado")
-            })
-        }).catch(err => {
-            res.send("Endereço não encontrado")
-        })
-    }).catch(err => {
-        res.send("Tabela não encontrada")
     })
 })
 
