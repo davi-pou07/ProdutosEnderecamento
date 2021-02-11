@@ -65,14 +65,17 @@
                                                                 <td>
                                                                 <%var teste = 0%>
                                                                 <%enderecos.forEach(endereco =>{%>
-                                                                    <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
-                                                                    <input type="radio" name="end"
-                                                                        value="<%=b[i]%> - <%=y%>" disabled>
+                                                                    <%if(teste == 0){%>
+                                                                        <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
+                                                                            <input type="radio" name="end"
+                                                                            value="<%=b[i]%> - <%=y%>" disabled>
+                                                                        <%}else{%>
+                                                                            <input type="radio" name="endereco"
+                                                                            value="<%=b[i]%> - <%=y%>">
+                                                                        <%}%>
                                                                         <%teste = 1;%>
-                                                                        <%}else if(teste == 0){%>
-                                                                        <input type="radio" name="endereco"
-                                                                        value="<%=b[i]%> - <%=y%>">
                                                                     <%}%>
+                                                                        
                                                                 <%})%>
                                                                 </td>
                                                                 <%i++%>

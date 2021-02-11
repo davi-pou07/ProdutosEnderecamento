@@ -15,7 +15,10 @@ router.post("/tabela/save", (req, res) => {
         nome_rua: nome_rua,
         q_coluna: q_coluna,
         q_nivel: q_nivel,
-    }).then(() => {
+    }).then((tabela) => {
+        Enderecamento.create({
+            tabelaId:tabela.id
+        })
         res.redirect("/admin/tabela/novo")
     })
 })
@@ -44,7 +47,7 @@ router.post("/tabela/delete",adminAuth, (req, res) => {
         }).catch(err =>{
             res.send("Tabela não encontrada")
         })
-    } else {
+    } else { 
         res.redirect("/admin/tabelas")
     }
 })
