@@ -10,11 +10,11 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Rua</th>
+                        <th>Id</th>
                         <th>Rua</th>
                         <th>Coluna</th>
                         <th>Nível</th>
-                        <th>Ação</th>
+                        <th><th>Ação</th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,12 +33,14 @@
                                 <%= tabela.q_nivel%>
                             </td>
                             <td>
+                                <td>
                                 <form method="POST" action="/tabela/delete" style="display: inline;"
                                     onsubmit="confirmarDelecao(event,this)">
                                     <input type="hidden" name="id" value="<%=tabela.id%>">
                                     <button class="btn btn-danger">Deletar</button>
                                 </form>
                                 <a href="/admin/enderecos/<%=tabela.id%>" class="btn btn-primary">Produtos</a>
+                            </td>
                             </td>
                     </tr>
                     <%})%>

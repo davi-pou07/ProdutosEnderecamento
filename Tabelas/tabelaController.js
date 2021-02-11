@@ -26,6 +26,10 @@ router.post("/tabela/save", (req, res) => {
 router.get("/admin/tabelas", (req, res) => {
     Tabela.findAll().then(tabela => {
         res.render("admin/tabela/index", { tabela: tabela })
+    }).catch(err =>{
+        res.send("Nenhuma tabela cadastrada")
+    }).then(()=>{
+        res.redirect("/admin/tabela/novo")
     })
 })
 
