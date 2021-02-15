@@ -18,13 +18,14 @@ router.get("/admin/enderecamento/novo/:idprod", adminAuth, (req, res) => {
     })
 })
 
-router.get("/admin/enderecamento/novo/:idProd/:idTab", (req, res) => {
+router.get("/admin/enderecamento/novo/:idProd/:idTab", adminAuth, (req, res) => {
     var idprod = req.params.idProd
     var idTab = req.params.idTab
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
             Tabela.findByPk(idTab).then(tabelinha => {
                 Enderecamento.findAll({ where: { tabelaId: idTab}}).then(enderecos => {
+                    console.log(enderecos)
                     res.render("admin/enderecamento/new", { tabelinha: tabelinha, tabelas: tabelas, produto: produto, enderecos:enderecos })
                 })
             })

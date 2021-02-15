@@ -64,17 +64,18 @@
                                                             <%while(tabelinha.q_coluna>i){%>
                                                                 <td>
                                                                 <%var teste = 0%>
+                                                                <!-- Para facilitar ultilize o metodo ache e conte do sequelize para fazer a contagem, se caso for o ultimo de endereco e não for encontrado nehum deixe em branco -->
                                                                 <%enderecos.forEach(endereco =>{%>
-                                                                    <%if(teste == 0){%>
                                                                         <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
                                                                             <input type="radio" name="end"
-                                                                            value="<%=b[i]%> - <%=y%>" disabled>
+                                                                            value="oi" disabled>
+                                                                            <%teste = 1;%>
                                                                         <%}else{%>
+                                                                    <%if(teste == 0){%>
                                                                             <input type="radio" name="endereco"
                                                                             value="<%=b[i]%> - <%=y%>">
-                                                                        <%}%>
-                                                                        <%teste = 1;%>
                                                                     <%}%>
+                                                                        <%}%>
                                                                         
                                                                 <%})%>
                                                                 </td>
