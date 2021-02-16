@@ -63,20 +63,23 @@
                                                             </th>
                                                             <%while(tabelinha.q_coluna>i){%>
                                                                 <td>
-                                                                <%var teste = 0%>
-                                                                <!-- Para facilitar ultilize o metodo ache e conte do sequelize para fazer a contagem, se caso for o ultimo de endereco e não for encontrado nehum deixe em branco -->
+                                                                <%var teste = 1;%>
                                                                 <%enderecos.forEach(endereco =>{%>
+                                                                    <%if(teste != 0){%>
                                                                         <%if(endereco.coluna==b[i] && endereco.nivel==y){%>
                                                                             <input type="radio" name="end"
                                                                             value="oi" disabled>
-                                                                            <%teste = 1;%>
+                                                                            <%teste = 0;%>
                                                                         <%}else{%>
-                                                                    <%if(teste == 0){%>
-                                                                            <input type="radio" name="endereco"
-                                                                            value="<%=b[i]%> - <%=y%>">
-                                                                    <%}%>
+                                                                            <%if(teste != 0){%>
+                                                                                <%teste ++;%>
+                                                                                    <%if(teste > contagem.count){%>
+                                                                                        <input type="radio" name="endereco"
+                                                                                        value="<%=b[i]%> - <%=y%>">
+                                                                                    <%}%>
+                                                                            <%}%>
                                                                         <%}%>
-                                                                        
+                                                                    <%}%>
                                                                 <%})%>
                                                                 </td>
                                                                 <%i++%>
@@ -93,7 +96,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button class="btn btn-success">Cadastrar</button>
+                                    <button class="btn btn-success" onclick="this.form.submit(); this.disabled=true; this.value='Carregando…';">Cadastrar</button>
                                 </div>
                 </div>
                 </form>

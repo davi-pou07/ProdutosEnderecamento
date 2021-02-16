@@ -10,8 +10,10 @@ router.get("/admin/enderecamento/novo/:idprod", adminAuth, (req, res) => {
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
             Tabela.findOne({ order: [['id', 'DESC']] }).then(tabelinha => {
-                Enderecamento.findAndCountAll().then(enderecos => {
-                    res.render("admin/enderecamento/new", { tabelas: tabelas, produto: produto, tabelinha: tabelinha, enderecos: enderecos })
+                Enderecamento.findAndCountAll().then(contagem => {
+                    Enderecamento.findAll().then(enderecos =>{
+                    res.render("admin/enderecamento/new", { tabelinha: tabelinha, tabelas: tabelas, produto: produto, enderecos:enderecos,contagem:contagem })
+                    })
                 })
             })
         })
@@ -24,10 +26,10 @@ router.get("/admin/enderecamento/novo/:idProd/:idTab", adminAuth, (req, res) => 
     Tabela.findAll().then((tabelas) => {
         Produto.findByPk(idprod).then(produto => {
             Tabela.findByPk(idTab).then(tabelinha => {
-                Enderecamento.findAndCountAll({ where: { tabelaId: idTab}}).then(enderecos => {
-                    //ERRO
-                    console.log(enderecos.count)
-                    res.render("admin/enderecamento/new", { tabelinha: tabelinha, tabelas: tabelas, produto: produto, enderecos:enderecos })
+                Enderecamento.findAndCountAll({ where: { tabelaId: idTab}}).then(contagem => {
+                    Enderecamento.findAll({ where: { tabelaId: idTab}}).then(enderecos =>{
+                    res.render("admin/enderecamento/new", { tabelinha: tabelinha, tabelas: tabelas, produto: produto, enderecos:enderecos,contagem:contagem })
+                    })
                 })
             })
         })

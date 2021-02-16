@@ -23,7 +23,7 @@ router.post("/tabela/save", (req, res) => {
     })
 })
 
-router.get("/admin/tabelas", (req, res) => {
+router.get("/admin/tabelas",adminAuth, (req, res) => {
     Tabela.findAll().then(tabela => {
         res.render("admin/tabela/index", { tabela: tabela })
     }).catch(err =>{
@@ -36,10 +36,10 @@ router.get("/admin/tabelas", (req, res) => {
 router.post("/tabela/delete",adminAuth, (req, res) => {
     var idtabela = req.body.idtabela
     if (idtabela != undefined) {
-        Enderecamento.findAll({ where: { tabeloId: idtabela } }).then(enderecos => {
+        Enderecamento.findAndCountAll({ where: { tabeloId: idtabela } }).then(enderecos => {
             if (enderecos == undefined) {
                 if (!isNaN(idtabela)) {
-                    Tabela.destroy({ where: { id: idtabela } })
+                    Tabela.destroy({ where: { id: idtabela } }).then(() =>{ res.redirect("/admin/tabelas")})
                 }else{
                     res.redirect("/admin/tabelas")
                 }
