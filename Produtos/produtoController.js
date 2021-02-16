@@ -30,7 +30,7 @@ router.post("/produto/save", (req, res) => {
             slug: slugify(nome),
         }).then(produto => {
             if (resp == "S") {
-                res.redirect("/admin/enderecamento/novo/" + produto.id)
+                res.redirect("/admin/enderecamento/novo/" + produto.id +"/"+ 1)
             } else {
                 res.redirect("/admin/produtos")
             }
