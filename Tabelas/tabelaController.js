@@ -35,24 +35,17 @@ router.get("/admin/tabelas",adminAuth, (req, res) => {
 
 router.post("/tabela/delete",adminAuth, (req, res) => {
     var idtabela = req.body.idtabela
-    if (idtabela != undefined) {
-        Enderecamento.findAndCountAll({ where: { tabeloId: idtabela } }).then(enderecos => {
-            if (enderecos == undefined) {
-                if (!isNaN(idtabela)) {
-                    Tabela.destroy({ where: { id: idtabela } }).then(() =>{ res.redirect("/admin/tabelas")})
-                }else{
-                    res.redirect("/admin/tabelas")
-                }
-            }else{
-                //-----------------------------------------------------------
-                res.redirect("/admin/enderecos/"+tabela.id)
-                //-----------------------------------------------------------
-            }
-        }).catch(err =>{
-            res.send("Tabela não encontrada")
-        })
-    } else { 
-        res.redirect("/admin/tabelas")
+    if (idtabela == undefined) {
+        if (!isNaN(idtabela)) {
+            Tabela.destroy({ where: { id: idtabela } }).then(() =>{ res.redirect("/admin/tabelas")})
+        }else{
+            setTimeout(() => {
+                res.send("Ops! Erro, não encontramos nenhuma tabela com esse ID")
+            }, 80000);
+            res.redirect("/admin/tabelas")
+        }
+    }else{
+            res.redirect("/admin/tabelas")
     }
 })
 
