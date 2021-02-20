@@ -36,7 +36,7 @@
                                 <td>
                                 <form method="POST" action="/tabela/delete" style="display: inline;"
                                     onsubmit="confirmarDelecao(event,this)">
-                                    <input type="hidden" name="id" value="<%=tabela.id%>">
+                                    <input type="hidden" name="idtabela" value="<%=tabela.id%>">
                                     <button class="btn btn-danger">Deletar</button>
                                 </form>
                                 <a href="/admin/enderecos/<%=tabela.id%>" class="btn btn-primary">Produtos</a>
@@ -47,18 +47,18 @@
                 </tbody>
             </table>
         </div>
+        <script>
+            function confirmarDelecao(event, form) {
+                //Não deixa enviar o formulario
+                event.preventDefault();
+                var decision = confirm("Você quer deletar?")
+                if (decision) {
+                    //Manda o formulario -- o This dentro de um evento em tml você esta referenciando o formulrio em sim
+                    form.submit()
+                } else {
 
-        <%- include('../../partials/footer.ejs')%>
-            <script>
-                function confirmarDelecao(event, form) {
-                    //Não deixa enviar o formulario
-                    event.preventDefault();
-                    var decision = confirm("Você quer deletar?")
-                    if (decision) {
-                        //Manda o formulario -- o This dentro de um evento em tml você esta referenciando o formulrio em sim
-                        form.submit()
-                    } else {
-
-                    }
                 }
-            </script>
+            }
+        </script>
+        <%- include('../../partials/footer.ejs')%>
+            
