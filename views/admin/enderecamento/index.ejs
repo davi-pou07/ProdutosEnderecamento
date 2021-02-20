@@ -17,11 +17,20 @@
                                 <%=tabela.nome_rua%>
                             </a>
                             <%})%>
+                            
                                 <hr>
                                     <!-- Titulo da tabela -->
                                     <caption>
-                                        <%=tabelinha.nome_rua%>
                                             <input type="hidden" name="tabelaId" value="<%=tabelinha.id%>">
+                                            <nav class="navbar navbar-light bg-light">
+                                                <div class="container-fluid">
+                                                    <%=tabelinha.nome_rua%>
+                                                  <form class="d-flex">
+                                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                                  </form>
+                                                </div>
+                                              </nav>
                                     </caption>
                                     <!-- Tabela Inicio -->
                                     <table class="table table-hover">

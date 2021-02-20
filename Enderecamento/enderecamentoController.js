@@ -104,7 +104,11 @@ router.get("/admin/enderecos/:tabelaId", (req, res) => {
         Enderecamento.findAll({ where: { tabelaId: tabelaId } }).then(enderecos => {
             Produto.findAll().then(produtos => {
                 Tabela.findByPk(tabelaId).then(tabelinha => {
+                    if (tabelinha != undefined) {
                     res.render("admin/enderecamento/index", { tabelas: tabelas, enderecos: enderecos, produtos: produtos, tabelinha: tabelinha })
+                    }else{
+                        res.send("tabela não encontrado")
+                    }
                 }).catch(err => {
                     res.send("tabela não encontrado")
                 })
