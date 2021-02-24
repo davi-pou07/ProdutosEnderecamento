@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Tabela = require("../DataBases/tabela");
+const Tabela = require("../DataBases/Tabela");
 const Enderecamento = require("../DataBases/Enderecamento")
 const adminAuth = require("../middlewares/adminAuth")
 
