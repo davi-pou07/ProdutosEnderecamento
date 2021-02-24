@@ -17,6 +17,7 @@ const userController = require("./user/userController")
 //exportando model de ciração de tabelos no banco
 
 const PORT = processo.env.PORTA || 5000
+
 const path = require('path')
 
 //databases
