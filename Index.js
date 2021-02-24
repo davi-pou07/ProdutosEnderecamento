@@ -46,7 +46,6 @@ app.use("/", tabelaController)
 app.use("/", userController)
 
 app.get("/", (req, res) => { res.render("index") })
-app.get('/cool', (req, res) => res.send(cool()))
 
 app.listen(8080, () => {
     console.log("Servidor rodando!")
