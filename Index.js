@@ -16,13 +16,6 @@ const User = require("./DataBases/User")
 const userController = require("./user/userController")
 //exportando model de ciração de tabelos no banco
 
-//Heroku
-const cool = require('cool-ascii-faces');
-const path = require('path');
-const PORT = process.env.PORT || 8080;
-
-
-
 //databases
 connection
     .authenticate()
@@ -55,6 +48,6 @@ app.use("/", userController)
 app.get("/", (req, res) => { res.render("index") })
 app.get('/cool', (req, res) => res.send(cool()))
 
-app.listen(PORT, () => {
+app.listen(8080, () => {
     console.log("Servidor rodando!")
 })
