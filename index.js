@@ -16,6 +16,10 @@ const User = require("./DataBases/User")
 const userController = require("./user/userController")
 //exportando model de ciração de tabelos no banco
 
+const PORT = process.env.PORT || 5000
+
+const path = require('path')
+
 //databases
 connection
     .authenticate()
@@ -32,9 +36,10 @@ app.use(session({
     cookie: { maxAge: 1800000000 }
 }))
 //usar o EJS como view engine | renderizador de html
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 //Carregamento de arquivos estaticos no express
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 //Carregamento do bodyPerser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -45,8 +50,8 @@ app.use("/", enderecamentoController)
 app.use("/", tabelaController)
 app.use("/", userController)
 
-app.get("/", (req, res) => { res.render("index") })
+app.get("/", (req, res) => { res.render("pages / index") })
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log("Servidor rodando!")
 })
