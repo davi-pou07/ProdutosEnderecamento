@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-const connection = new Sequelize('d3918lsvq94fe','kqainbgfpqbbzz','34d884cbb7a86c957cf388c99ea462f2c2d7616094f9b753ea59de093c21031f',{
-    host:'ec2-34-203-255-149.compute-1.amazonaws.com',
+const connection = new Sequelize('da1i1bcmrp89ss','ttsgwultjbdglu','d1e43edbcf3886c3f02ef798f177a2dcd35aa8edfcb8691d847ad2e4f00e085b',{
+    host:'ec2-34-194-215-27.compute-1.amazonaws.com',
     dialect: 'postgres',
     //configurando timezone
     timezone: "-03:00",
