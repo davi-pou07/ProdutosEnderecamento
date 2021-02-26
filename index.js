@@ -50,7 +50,7 @@ app.use("/", enderecamentoController)
 app.use("/", tabelaController)
 app.use("/", userController)
 
-app.get("/", (req, res) => { res.render("pages / index") })
+app.get("/", (req, res) => { res.render("index") })
 
 app.listen(PORT, () => {
     console.log("Servidor rodando!")

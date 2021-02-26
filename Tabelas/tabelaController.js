@@ -4,7 +4,7 @@ const Tabela = require("../DataBases/Tabela");
 const Enderecamento = require("../DataBases/Enderecamento")
 const adminAuth = require("../middlewares/adminAuth")
 
-router.get("/admin/tabela/novo",adminAuth, (req, res) => {
+router.get("/admin/tabela/novo", (req, res) => {
     res.render("admin/tabela/new")
 })
 router.post("/tabela/save", (req, res) => {
@@ -23,7 +23,7 @@ router.post("/tabela/save", (req, res) => {
     })
 })
 
-router.get("/admin/tabelas",adminAuth, (req, res) => {
+router.get("/admin/tabelas", (req, res) => {
     Tabela.findAll().then(tabela => {
         res.render("admin/tabela/index", { tabela: tabela })
     }).catch(err =>{

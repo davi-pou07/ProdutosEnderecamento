@@ -10,7 +10,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "jquery": "^3.5.1",
-    "mysql2": "^2.2.5",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "save": "^2.4.0",
     "sequelize": "^6.4.0",
     "slugify": "^1.4.6"
