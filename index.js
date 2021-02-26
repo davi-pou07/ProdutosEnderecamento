@@ -20,6 +20,8 @@ const PORT = process.env.PORT || 5000
 
 const path = require('path')
 
+
+
 //databases
 connection
     .authenticate()
@@ -44,10 +46,10 @@ app.use(session({
     cookie: { maxAge: 1800000000 }
 }))
 //usar o EJS como view engine | renderizador de html
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join('C:\Program Files\PostgreSQL\12\bin', 'views'))
 app.set('view engine', 'ejs')
 //Carregamento de arquivos estaticos no express
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join('C:\Program Files\PostgreSQL\12\bin', 'public')))
 //Carregamento do bodyPerser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
