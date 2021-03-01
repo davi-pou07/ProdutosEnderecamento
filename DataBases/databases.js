@@ -20,3 +20,6 @@ module.exports = connection;
 //heroku config:set PGSSLMODE=no-verify
 //heroku pg:reset DATABASE --confirm produtosenderecamento
 //set DATABASE_URL=postgres://$(whoami)
+
+//heroku git:remote -a thawing-inlet-61413
+
