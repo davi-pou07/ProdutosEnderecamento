@@ -35,14 +35,11 @@ router.get("/admin/tabelas", (req, res) => {
 
 router.post("/tabela/delete",adminAuth, (req, res) => {
     var idtabela = req.body.idtabela
-    if (idtabela == undefined) {
+    if (idtabela != undefined) {
         if (!isNaN(idtabela)) {
             Tabela.destroy({ where: { id: idtabela } }).then(() =>{ res.redirect("/admin/tabelas")})
         }else{
-            setTimeout(() => {
-                res.send("Ops! Erro, não encontramos nenhuma tabela com esse ID")
-            }, 80000);
-            res.redirect("/admin/tabelas")
+            res.send("Ops! Erro, não encontramos nenhuma tabela com esse ID")
         }
     }else{
             res.redirect("/admin/tabelas")
